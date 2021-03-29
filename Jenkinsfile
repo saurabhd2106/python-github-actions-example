@@ -20,7 +20,10 @@ pipeline {
             }
             
             post {
-                echo "Post Build"
+                always {
+                    echo "Post Build"  
+                }
+                
             }
             
         }
