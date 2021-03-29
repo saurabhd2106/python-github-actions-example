@@ -28,6 +28,8 @@ pipeline {
                 
                 sh "pip3 install pytest"
 
+                sh "export PYTHONPATH=src"
+
                 sh """
                     cd tests;
                     pytest
