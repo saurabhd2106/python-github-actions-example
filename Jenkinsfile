@@ -14,16 +14,24 @@ pipeline {
             
         }
         
-        stage('Build') {
+        stage('Quality Scans') {
             steps {
-                echo "Build"
+                sh "pip3 install flake8"
+                sh "flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics"
+                sh "flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics"
             }
             
-            post {
-                always {
-                    echo "Post Build"  
-                }
+        }
+
+        stage('Tests') {
+            steps {
                 
+                sh "pip3 install pytest"
+
+                sh """
+                    cd tests;
+                    pytest
+                """
             }
             
         }
