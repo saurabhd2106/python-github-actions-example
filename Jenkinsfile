@@ -16,11 +16,11 @@ pipeline {
         
         stage('Build') {
             steps {
-                
+                echo "Build"
             }
             
             post {
-                
+                echo "Post Build"
             }
             
         }
